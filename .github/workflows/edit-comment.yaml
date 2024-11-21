@@ -1,3 +1,5 @@
+name: Issue comment
+
 on: issue_comment
 
 jobs:

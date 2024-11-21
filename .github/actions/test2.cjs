@@ -12,8 +12,8 @@ const issue_number = process.env.GITHUB_PR_NUMBER;
 
 	// Initialize Octokit with the GitHub token
 	const octokit = new Octokit({ auth });
-	const main = fs.readFileSync("flat-manifest-main.json");
-	const pr = fs.readFileSync("flat-manifest-pr.json");
+	const main = fs.readFileSync("flat-manifest-main.json", "utf-8");
+	const pr = fs.readFileSync("flat-manifest-pr.json", "utf-8");
 
 	try {
 		const { data: comments } = await octokit.issues.listComments({

@@ -9,11 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Flatten current CEM
-        run: |
-          node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-pr
-          echo "Current manifest ==="
-          cat flat-manifest-pr.json
+      # - name: Flatten current CEM
+      #   run: |
+      #     node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-pr
+      #     echo "Current manifest ==="
+      #     cat flat-manifest-pr.json
 
       - name: Save current output file
         id: pr_file

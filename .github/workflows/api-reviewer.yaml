@@ -15,6 +15,10 @@ jobs:
           echo "Current manifest ==="
           cat flat-manifest-current.json
 
+      - name: Save current output file
+        id: current_file
+        run: echo "::set-output name=flat-manifest-current::$(cat flat-manifest-current.json)"
+
       - uses: actions/checkout@v4
         with:
           ref: main
@@ -23,5 +27,7 @@ jobs:
         run: |
           node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-main
           echo "Main manifest ==="
+          echo "${{ steps.pr_file.outputs.pr_file_content }}" > flat-manifest-current.json
           cat flat-manifest-main.json
           cat flat-manifest-current.json
+

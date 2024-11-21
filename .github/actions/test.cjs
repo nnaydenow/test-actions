@@ -82,4 +82,4 @@ const fs = require('fs');
 let fileName = process.argv.slice(2).find(arg => arg.startsWith("--file-name="))?.replace("--file-name=", "")
 
 // fs.writeFileSync(`${fileName}.json`, JSON.stringify(result))
-fs.writeFileSync(`${fileName}.json`, fileName)
+fs.writeFileSync(`${fileName}.json`, "testtststst =====" + fileName)

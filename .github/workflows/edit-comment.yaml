@@ -1,0 +1,26 @@
+on: issue_comment
+
+jobs:
+  pr_commented:
+    # This job only runs for pull request comments
+    name: PR comment
+    if: ${{ github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18" # Use your desired version
+
+      - name: Install dependencies
+        run: |
+          npm install @octokit/rest  # Install Octokit to interact with GitHub API
+
+      - name: Run Node.js script
+        run: |
+          node ${{ github.workspace }}/.github/actions/test3.cjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub token with write permissions
+          GITHUB_REPOSITORY: ${{ github.repository }} # Set repository name
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }} # Set repository owner
+          GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}

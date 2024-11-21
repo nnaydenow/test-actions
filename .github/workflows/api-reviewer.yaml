@@ -11,23 +11,24 @@ jobs:
 
       - name: Flatten current CEM
         run: |
-          node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-current
+          node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-pr
           echo "Current manifest ==="
-          cat flat-manifest-current.json
+          cat flat-manifest-pr.json
 
       - name: Save current output file
         id: pr_file
-        run: echo "::set-output name=flat-manifest-current::$(cat flat-manifest-current.json)"
+        run: echo "::set-output name=flat-manifest-pr::$(cat flat-manifest-pr.json)"
 
       - uses: actions/checkout@v4
         with:
           ref: main
 
-      - name: Flatten main CEM2
+      - name: Flatten main CEM3
         run: |
           node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-main
           echo "Main manifest ==="
-          echo "${{ steps.pr_file.outputs.current }}" > flat-manifest-current.json
+          echo "${{ steps.pr_file.outputs.flat-manifest-pr }}" > flat-manifest-pr.json
           cat flat-manifest-main.json
-          cat flat-manifest-current.json
+          echo "Current manifest ==="
+          cat flat-manifest-pr.json
 

@@ -23,7 +23,7 @@ jobs:
         with:
           ref: main
 
-      - name: Flatten main CEM
+      - name: Flatten main CEM2
         run: |
           node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-main
           echo "Main manifest ==="

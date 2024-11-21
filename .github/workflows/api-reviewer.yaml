@@ -25,5 +25,5 @@ jobs:
           echo "Main manifest ==="
           node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-main
           echo "Main manifest ==="
-          cat flat-manifest-current.json
           cat flat-manifest-main.json
+          cat flat-manifest-current.json

@@ -27,7 +27,7 @@ jobs:
         run: |
           node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-main
           echo "Main manifest ==="
-          echo "${{ steps.pr_file.outputs.pr_file_content }}" > flat-manifest-current.json
+          echo "${{ steps.pr_file.outputs.current }}" > flat-manifest-current.json
           cat flat-manifest-main.json
           cat flat-manifest-current.json
 

@@ -25,10 +25,12 @@ jobs:
 
       - name: Flatten main CEM3
         run: |
-          node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-main
           echo "Main manifest ==="
-          echo "${{ steps.pr_file.outputs.flat-manifest-pr }}" > flat-manifest-pr.json
+          # node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-main
+          echo "Main manifest ==="
           cat flat-manifest-main.json
+          echo ""
           echo "Current manifest ==="
+          echo "${{ steps.pr_file.outputs.flat-manifest-pr }}" > flat-manifest-pr.json
           cat flat-manifest-pr.json
 

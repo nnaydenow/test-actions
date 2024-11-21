@@ -23,7 +23,7 @@ jobs:
       - name: Flatten main CEM
         run: |
           echo "Main manifest ==="
-          node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-main
+          # node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-main
           echo "Main manifest ==="
           cat flat-manifest-current.json
           cat flat-manifest-main.json

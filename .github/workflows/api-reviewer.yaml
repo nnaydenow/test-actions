@@ -14,7 +14,6 @@ jobs:
           node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-current
           echo "Current manifest ==="
           cat flat-manifest-current.json
-          cat flat-manifest-main.json
 
       - uses: actions/checkout@v4
         with:
@@ -26,4 +25,3 @@ jobs:
           node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-main
           echo "Main manifest ==="
           cat flat-manifest-main.json
-          cat flat-manifest-current.json

@@ -16,7 +16,7 @@ jobs:
           cat flat-manifest-current.json
 
       - name: Save current output file
-        id: current_file
+        id: pr_file
         run: echo "::set-output name=flat-manifest-current::$(cat flat-manifest-current.json)"
 
       - uses: actions/checkout@v4

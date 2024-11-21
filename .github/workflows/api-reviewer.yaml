@@ -8,22 +8,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Flatten current CEM
+      - name: Flatten current PR custom-elements.json
         run: |
-          node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-current
-          echo "Current manifest ==="
-          cat flat-manifest-current.json
-          cat flat-manifest-main.json
+          # node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-pr
+
+      - name: Save current PR custom-elements.json
+        id: pr_file
+        run: echo "::set-output name=flat-manifest-pr::$(cat flat-manifest-pr.json)"
 
       - uses: actions/checkout@v4
         with:
           ref: main
 
-      - name: Flatten main CEM
+      - name: Flatten origin/main branch custom-elements.json
         run: |
-          echo "Main manifest ==="
           # node ${{ github.workspace }}/.github/actions/test.cjs --file-name=flat-manifest-main
-          echo "Main manifest ==="
-          cat flat-manifest-current.json
-          cat flat-manifest-main.json
+
+      - name: Create current PR custom-elemnts.json in main branch
+        run: |
+          echo "${{ steps.pr_file.outputs.flat-manifest-pr }}" > flat-manifest-pr.json
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18" # Use your desired version
+
+      - name: Install dependencies
+        run: |
+          npm install @octokit/rest  # Install Octokit to interact with GitHub API
+
+      - name: Run Node.js script
+        run: |
+          node ${{ github.workspace }}/.github/actions/test2.cjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub token with write permissions
+          GITHUB_REPOSITORY: ${{ github.repository }} # Set repository name
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }} # Set repository owner
+          GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}

@@ -44,3 +44,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub token with write permissions
           GITHUB_REPOSITORY: ${{ github.repository }} # Set repository name
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }} # Set repository owner
+          GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}

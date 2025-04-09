@@ -28,6 +28,9 @@ jobs:
             // Allowed bots
             const isSystemUser = ['ui5-webcomponents-bot', 'github-actions[bot]'].includes(commenter);
 
+            console.log("closedAt", closedAt)
+            console.log("commentAt", commentAt)
+
             core.setOutput('shouldReopen', !isSystemUser && commentAt > closedAt);
 
       - name: Reopen Issue

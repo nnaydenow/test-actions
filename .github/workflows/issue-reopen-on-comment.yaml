@@ -30,6 +30,7 @@ jobs:
 
             console.log("closedAt", closedAt)
             console.log("commentAt", commentAt)
+            console.log("commenter", commenter)
 
             core.setOutput('shouldReopen', !isSystemUser && commentAt > closedAt);
 
